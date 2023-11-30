@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Document</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <link href="main2.css" rel="stylesheet">
+</head>
+
+<body>
+    <form action="success.html">
+        <div class="my-3">
+            <input type="text" class="form-control" id="아이디">
+        </div>
+        <div class="my-3">
+            <input type="password" class="form-control" id="비밀번호">
+        </div>
+        <button type="submit" class="btn btn-primary" id="send">전송</button>
+        <button type="button" class="btn btn-danger" id="close">닫기</button>
+    </form>
+
+    <nav class="navbar navbar-light bg-light">
+        <div class="container-fluid">
+            <span class="navbar-brand">Navbar</span>
+            <span class="badge bg-dark ms-auto mx-3 ">Dark 🔄</span>
+            <button class="navbar-toggler" type="button">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+        </div>
+    </nav>
+    <button class="btn-black">버튼</button>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script>
+
+        // 변수의 선언, 할당, 범위라는 개념
+
+
+        // 변수쓸 땐 선언과 할당이라는 용어가 있는데
+
+        // 변수만드는걸 선언
+
+        // 변수에 뭐 집어넣는걸 할당이라고 합니다.
+
+
+
+        // var 나이;
+        // var 이름;
+        // 이건 변수의 선언이라고 합니다. 
+
+
+
+
+
+        // var 나이;
+        // var 이름;
+        // 나이 = 20;
+        // 이름 = 'kim';
+        // 밑의 2줄은 할당이라고 합니다.
+
+
+
+        // - 저렇게 선언만 따로, 할당만 따로 할 수 있습니다. 
+
+        // - 이미 있는 변수를 재선언도 가능합니다.
+
+        // - 이미 들어있는 값을 등호로 재할당도 가능합니다.
+
+
+
+
+
+
+
+
+
+        // function 함수(){
+        //   var 나이 = 20;
+        //   console.log(나이); //가능
+        // }
+
+        // console.log(나이); //불가능
+        // 변수는 사용가능한 범위가 있습니다.
+
+        // 함수 안에서 변수를 만들었을 경우 함수 안에서만 사용가능합니다.
+
+        // 밖에선 사용불가능합니다. 밖에서 출력하면 변수가 정의 안되었다고 에러남
+
+
+
+        // - 반대로 함수 바깥에서 만든 변수는 함수 안에서는 사용가능합니다.
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // var let const 문법 전부 변수생성 가능
+
+
+
+        // let 거주지 = 'seoul';
+        // const 가격 = 3000;
+        // var 대신 let, const 문법 써도 똑같이 변수생성이 가능합니다.
+
+        // 근데 let, const는 이런 기능을 제공합니다. 
+
+
+
+
+
+        // let 거주지 = 'seoul';
+        // let 거주지; //에러내줌
+        // let, const는 재선언 불가능합니다. 재선언하면 에러를 내줍니다.  
+
+
+
+        // Q. 장점이 뭐임 
+
+        // 여러분 코드 천줄 만줄 짜다보면 나중에 변수만든거 또 만들고 그런 실수가 있습니다.
+
+        // 그걸 미연에 방지해주는 고마운 변수생성 키워드입니다. 
+
+
+
+
+
+
+
+
+
+        // const 가격 = 3000;
+        // 가격 = 4000;  //에러내줌
+        // const는 재할당도 불가능합니다. 재할당하면 에러를 내줍니다.
+
+
+
+        // Q. 장점이 뭐임 
+
+        // 값을 수정하면 큰일나는 변수들을 만들고싶을 때 유용합니다.
+
+        // 나중에 값을 변경하는 실수를 방지하고 싶을 때 쓰면 됩니다.
+
+
+
+
+
+
+
+
+
+
+
+        // if (true) {
+        //   let 이름 = 'kim';
+        // }
+
+        // console.log(이름); //없다고 나옴
+        // let과 const는 범위가 더 좁습니다. 모든 중괄호가 범위입니다.
+
+        // if, function, 나중에 배울 for 반복문 이런 것은 중괄호가 있습니다.
+
+        // 중괄호 안에서 만든 let const 변수의 경우 중괄호를 벗어나면 없다고 나옵니다. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        // 정리하자면 이렇습니다. 
+
+        // var 변수는 유연해서 재선언 재할당이 자유롭습니다. 
+
+        var name = 'park';
+        var id = 0;
+
+        function showName() {
+            var name = 'kim';
+            var id = 1;
+            console.log(name);
+        }
+
+        showName();
+        console.log(id);
+
+        var count = 0;
+
+        $('.badge').on('click', function () {
+            count += 1;
+            if (count % 2 == 1) {
+                $('.badge').html('Light');
+            } else {
+                $('.badge').html('Dark').addClass('bg-light');
+            }
+        });
+        var 입력한값 = document.getElementById('아이디').value;
+
+        $('form').on('submit', function (e) {
+            if (!document.getElementById('아이디').value) {
+                alert("아이디를 입력해 주십시오.");
+                e.preventDefault();
+
+                if (/\S+@\S+.\S+/.test(입력한값)) {
+                    alert('이메일형식아님');
+                }
+            }
+            else {
+
+                if (!document.getElementById('비밀번호').value) {
+                    alert("비밀번호를 입력해 주십시오.");
+                    e.preventDefault();
+                }
+                else {
+
+                    if (document.getElementById('비밀번호').value.length < 6) {
+                        alert("6자리 이상으로 작성해주세요.");
+                        e.preventDefault();
+                        if (/[A-Z]/.test(비번) == false) {
+                            alert('대문자없는데요')
+                        }
+                    }
+                }
+            }
+        });
+
+        // 전송버튼 누르면 저기 input에 입력한 값이 공백이면 알림창 띄워주세요
+
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+
+</body>
+
+</html>
