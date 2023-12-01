@@ -121,17 +121,106 @@ cards.forEach((card, index) => {
     titleElement.innerHTML = products[index].title;
     priceElement.innerHTML = '가격 : ' + products[index].price;
 });
-$('.form-select').on('input',function() {
 
-    // var 셔츠 = document.querySelectorAll('.form-select')[0].value;
-    // var 셔츠 = $('.form-select').eq(0).val()
-    var 셔츠 = this.value;
-    console.log(셔츠);
+// 서버에서 데이터를 가져올때 하드 코딩으로 만들어버리면 
+// 내일 당장 데이터가 추가되면 다시 수정해야 되니 
+// 그래서 반복문을 사용하는 것이 좋다!
 
-    if(셔츠 == '셔츠') {
-        $('.form-select').eq(1).removeClass('down'); 
+var products = [
+    { title: '모자', hat: ['S', 'L', 'XL'] },
+    { title: '셔츠', shirts: [95, 100, 105] },
+    { title: '바지', pants: [28, 30, 32, 34] }
+];
+
+// 첫 번째 <select> 초기화
+var firstSelect = $('.form-select').eq(0);
+firstSelect.html('');
+products.forEach(data => {
+    firstSelect.append(`<option>${data.title}</option>`);
+
+
+    $('.form-select').eq(0).on('click', function () {  // 두 번째 <select>의 이벤트 핸들러 등록
+        var value = this.value;
+        var secondSelect = $('.form-select').eq(1);
+
+
+        secondSelect.removeClass('down').html(''); // 두 번째 <select> 초기화
+
+        // 선택된 값과 일치하는 제품 찾기
+        var selectedProduct = products.find(product => product.title == value);
+
+        if (selectedProduct) {
+            // 일치하는 제품이 있으면 두 번째 드롭다운에 옵션 추가
+            selectedProduct[Object.keys(selectedProduct)[1]].forEach(data => {
+                secondSelect.append(`<option>${data}</option>`);
+            });
+        } else {
+            console.error("선택된 제품을 찾을 수 없습니다.");
+        }
+
+    });
+
+});
+// Object.keys(selectedProduct): 이 부분은 selectedProduct 객체의 키들을 배열로 반환합니다.Object.keys 함수는 객체의 키를 배열로 추출합니다.여기서는 selectedProduct의 모든 키를 배열로 가져오게 됩니다.
+
+// [1]: 이 부분은 앞서 언급한 키 배열에서 두 번째 키(인덱스 1)를 선택합니다.여기서는 title 이후의 두 번째 속성, 즉 해당 제품의 크기 배열(hat, shirts, pants)이 됩니다.
+
+//     selectedProduct[Object.keys(selectedProduct)[1]]: 이 부분은 실제로 두 번째 속성에 해당하는 배열을 반환합니다.
+
+// .forEach(data => { secondSelect.append(<option>${data}</option>); });: 이 부분은 해당 배열을 순회하면서 각 원소(data)에 대해 < option > 을 생성하고, 이를 secondSelect에 추가합니다.결과적으로, 두 번째 드롭다운에는 선택된 제품의 크기에 따른 옵션이 추가되게 됩니다.
+
+// 만약 selectedProduct 객체의 속성 구조가 바뀐다면 이 코드도 조금 수정해야 할 수 있습니다.현재 코드는 두 번째 속성을 기반으로 동적으로 옵션을 생성하고 추가하는 방식으로 작동합니다.
+
+
+
+
+// var obj = { name: 'kim', age: 20 }
+
+// for (var key in obj) {
+//     console.log(obj[key]);
+// }
+
+// hat.forEach((data) => {
+//     $('.form-select').eq(1).append(`<option>${data}</option>`)
+// })
+// var a = document.createElement('p');
+// a.innerText = '안녕';
+// document.querySelector('#test').appendChild(a);
+// var a = '<option>28</option>';
+// $('#test').append(a);
+// var a = '<p>안녕</p>';
+// document.querySelector('#test').innerHTML = 탬플릿;
+// var a = '<p>안녕</p>';
+// $('#test').append(a);
+
+// 바지를 선택하면 옵션 선택창이 나오고 95 100 이 아니라 28 30 이 나오도록 작성해보자
+
+
+
+
+var 출석부 = ['흥민', '영희', '철수', '재석'];
+var found = false;
+function 이름찾기(name) {
+    for (var i = 0; i < 출석부.length; i++) {
+        if (name == 출석부[i]) {
+            found = true;
+            break;
+        }
+    }
+    if(found) {
+        console.log('있어요');
     }
     else {
-        $('.form-select').eq(1).addClass('down');
+        console.log('없어요');
     }
-})
+}
+
+
+var obj = { name: 'kim', age: 20 }
+
+for (var key in obj) {
+    console.log('안녕')
+}
+
+
+
