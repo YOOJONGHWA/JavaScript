@@ -198,21 +198,13 @@ products.forEach(data => {
 
 
 
-var 출석부 = ['흥민', '영희', '철수', '재석'];
-var found = false;
+var 출석부 = ['흥민', '영희', '흥민', '재석'];
 function 이름찾기(name) {
-    for (var i = 0; i < 출석부.length; i++) {
-        if (name == 출석부[i]) {
-            found = true;
-            break;
-        }
-    }
-    if(found) {
-        console.log('있어요');
-    }
-    else {
-        console.log('없어요');
-    }
+   for(let i = 0; i < 출석부.length; i++) {
+        if(name == 출석부[i]) { }
+        console.log(이름찾기(name));
+ 
+   }
 }
 
 
@@ -222,5 +214,52 @@ for (var key in obj) {
     console.log('안녕')
 }
 
+// for(let i = 2; i < 10; i++) {
+
+//     for(let k = 1; k < 10; k++ ) {
+
+//         console.log(i * k);
+
+//     }
+
+// }
+var 전점수 = [10, 20, 30, 40, 50];
+var 지금점수 = 40;
+
+function 평균점수(before, now) {
+
+    var sum = 0;
+    var result = 0;
+    for(let i = 0; i < before.length; i++) {
+
+        sum += before[i];
+        result = sum / before.length;
+        if( result < now) {
+            console.log('와'+ (now-result)+'점이나 올랐네요!');
+        }
+        else {
+            console.log('재수강');
+        }
+
+    }
+
+}
+
+// ajax란 무엇이냐 일반적으로 Ger ,Post 방식으로 서버랑 연결할때는 새로고침한
+// 생태로 화면이 꾸며진다. 반면 ajax를 활용하면 몰래 서버랑 연결되어 화면에 바로 보여준다 
+
+// ajax로 Get 요청하는법
+
+$.get('https://codingapple1.github.io/price.json ').done(data => {
+    console.log(data.price);
+})
+.fail(function() {
+    console.log('실패함');
+})
+
+// 이렇게 사용한다는 것만 일단 알아두자
+// $.post('https://codingapple1.github.io/hello.txt',{name : 'kim'}).done(data => {
+//     console.log(data);
+// })
 
 
