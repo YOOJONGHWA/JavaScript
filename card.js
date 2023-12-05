@@ -4,11 +4,14 @@ var products = [
     { id: 2, price: 60000, title: 'Black Monastery', picture: 'https://via.placeholder.com/600' }
 ];
 
+
+
 products.forEach(data => {
     var 탬플릿 = `<div class="col-sm-4">
         <img src="${data.picture}" class="w-100">
         <h5>${data.title}</h5>
         <p>${data.price}</p>
+        <button class="buy">구매</button>
      </div>`;
     $('#first').append(탬플릿);
 });
@@ -88,11 +91,6 @@ var 새어레이 = 어레이.map(function (a) {
 })
 console.log("asdasd" + 새어레이);
 
-// var products = [
-//     { id: 0, price: 70000, title: 'Blossom Dress', picture: 'https://via.placeholder.com/600' },
-//     { id: 1, price: 50000, title: 'Springfield Shirt', picture: 'https://via.placeholder.com/600' },
-//     { id: 2, price: 60000, title: 'Black Monastery', picture: 'https://via.placeholder.com/600' }
-// ];
 
 
 // 숙제 1. "상품명 다나가순 정렬" 버튼 과 기능
@@ -195,3 +193,39 @@ $('#f5').click(function () {
     currentState = JSON.stringify(products);
 
 })
+localStorage.setItem('이름', 'kim');
+localStorage.getItem('이름');
+// localStorage.removeItem('이름');
+
+var arr = [1, 2, 3]
+var newArr = JSON.stringify(arr);
+localStorage.setItem('num', newArr);
+var 꺼낸거 = localStorage.getItem('num');
+꺼낸거 = JSON.parse(꺼낸거);
+// console.log(JSON.parse(꺼낸거)[0]);
+
+
+// var products = [
+//     { id: 0, price: 70000, title: 'Blossom Dress', picture: 'https://via.placeholder.com/600' },
+//     { id: 1, price: 50000, title: 'Springfield Shirt', picture: 'https://via.placeholder.com/600' },
+//     { id: 2, price: 60000, title: 'Black Monastery', picture: 'https://via.placeholder.com/600' }
+// ];
+
+
+$('.buy').click(function (e) {
+    var title = $(e.target).siblings('h5').text();
+    var cartItems = [];
+
+    if (localStorage.getItem('cart') !== null) {
+        cartItems = JSON.parse(localStorage.getItem('cart'));
+        cartItems.push(title);
+        localStorage.setItem('cart', JSON.stringify(cartItems));
+    } else {
+        localStorage.setItem('cart', JSON.stringify([title]));
+    }
+
+ 
+});
+
+//   localStorage에 있던 상품들 꺼내주세요
+//   꺼낸 상품 갯수만큼 <p>상품명</p>을 위에 생성해주세요
