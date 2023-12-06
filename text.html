@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+  
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .main{
+            width: 300px;
+            height:300px;
+            border: 1px solid black;
+        }
+        .drop {
+            width: 300px;
+            height:300px;
+            border: 1px solid black;
+        }
+    </style>
+</head>
+  
+<div class="main">
+    <img src="small.png" id="drag" draggable="true"/>
+</div>
+<hr>
+<div class="drop" id="drop"></div>
+<script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+<script src="http://code.jquery.com/ui/1.10.4/jquery-ui.min.js"></script>
+<script>
+    $(function(){
+        $('#drag').on({
+            //드래그 시작시 요소 id 저장
+            'dragstart':function(e){
+                e.originalEvent.dataTransfer.setData('text',e.target.id);
+                $(this).css('border','solid 2px Red');
+            },
+            //드래그 종료
+            'dragend':function(e){
+                $(this).css('border','none');
+            }
+        });
+  
+        $('#drop').on({
+            'dragenter':function(e){
+                $(this).css('background-color','#fc0');
+            },
+            'dragleave':function(e){
+                $(this).css('background-color','#ffc');
+            },
+            //브라우저 표중 동작 취소
+            'dragover':function(e){
+                e.preventDefault();
+            },
+            'drop':function(e){
+                $(e.target).append($('#'+e.originalEvent.dataTransfer.getData('text')));
+                e.preventDefault();
+            }
+        });
+    });
+</script>
